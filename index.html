@@ -1,0 +1,26 @@
+<form id="myForm">
+  <input name="nama" placeholder="Nama" required><br><br>
+  <input name="jemaat" placeholder="Jemaat" required><br><br>
+  <input name="jabatan" placeholder="Jabatan"><br><br>
+  <input name="peran" placeholder="Peran MUPEL"><br><br>
+  <input name="wa" placeholder="No WhatsApp" required><br><br>
+
+  <button type="submit">Lanjut</button>
+</form>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(e) {
+  e.preventDefault(); // 🔥 ini yang penting
+
+  const formData = new FormData(this);
+
+  fetch("https://script.google.com/macros/s/AKfycbzjLiRYWj3KlOtQ_WRIJasUJ4oPRR9a1m95McgJIafDfXsWVfiIbrkKej0VD_g6pRgrhg/exec", {
+    method: "POST",
+    body: formData
+  })
+  .catch(() => {}) // tetap lanjut walau error
+
+  // 🔥 redirect langsung (tidak nunggu fetch)
+  window.location.href = "https://chat.whatsapp.com/C72YFPsA89R3U44PWSFuBu";
+});
+</script>
