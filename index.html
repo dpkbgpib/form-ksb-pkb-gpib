@@ -82,6 +82,18 @@ button:hover {
   transform: scale(1.02);
 }
 
+.field {
+  margin-bottom: 12px;
+}
+
+select, input, textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
   </style>
 </head>
 
@@ -96,24 +108,37 @@ button:hover {
   <h2>Form Khusus KSB PKB Jemaat dan KP3/KORWIL PKB MUPEL GPIB</h2>
 
   <form id="myForm">
-
-<select name="mupel" id="mupel" required>
-  <option value="">Pilih MUPEL</option>
+<div class="field">
+  <label>MUPEL</label>
+  <select name="mupel" id="mupel" required>
+    <option value="">Pilih MUPEL</option>
   <option value="DKI Jakarta Pusat">DKI Jakarta Pusat</option>
   <option value="DKI Jakarta Utara">DKI Jakarta Utara</option>
   <option value="DKI Jakarta Selatan">DKI Jakarta Selatan</option>
   <option value="DKI Jakarta Barat">DKI Jakarta Barat</option>
   <option value="DKI Jakarta Timur">DKI Jakarta Timur</option>
-</select>
-
-    <select name="jemaat" id="jemaat" required>
-  <option value="">Pilih Jemaat</option>
-</select>
-
     
-    <label>Nama</label>
-<input name="nama" placeholder="Masukkan nama lengkap" required>
+  </select>
+</div>
+  
+<div class="field">
+  <label>Jemaat</label>
+  <select name="jemaat" id="jemaat" required>
+    <option value="">Pilih Jemaat</option>
+  </select>
+</div>
 
+<div class="field">
+  <label>Nama</label>
+  <input name="nama" placeholder="Masukkan nama lengkap" required>
+</div>
+<div>
+     <label>Nomor WhatsApp</label>
+    <input name="wa" placeholder="No WhatsApp" required>
+    </div>
+    
+<div>
+<label>Jabatan dalam PKB Jemaat</label>
 <select name="jabatan">
   <option value="">Pilih Jabatan</option>
   <option>Ketua</option>
@@ -123,6 +148,10 @@ button:hover {
   <option>Bendahara</option>
   <option>Wakil Bendahara</option>
 </select>
+  </div>
+
+    <div>
+      <label>Peran dalam PKB MUPEL</label>
     <select name="peran">
   <option value="">Tidak Ada</option>
   <option>KP3/KORWIL</option>
@@ -132,9 +161,11 @@ button:hover {
   <option>Bendahara KP3/KORWIL</option>
   <option>Wakil Bendahara KP3/KORWIL</option>
 </select>
-   
-  
-    <input name="wa" placeholder="No WhatsApp" required>
+      </div>
+    <div>
+ <label>Catatan/Komentar/Pertanyaan kepada Dewan PKB GPIB</label>
+    <textarea name="catatan" placeholder="Komentar / Saran (Opsional)"></textarea>
+  </div>
 
     <button type="submit">Lanjut request join Grup WA "KSB/KP3 PKB GPIB Sinodal (Aktif)"</button>
     
