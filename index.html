@@ -96,16 +96,40 @@ button:hover {
   <h2>Form Khusus KSB PKB Jemaat dan KP3/KORWIL PKB MUPEL GPIB</h2>
 
   <form id="myForm">
+
+<select name="mupel" id="mupel" required>
+  <option value="">Pilih MUPEL</option>
+  <option value="DKI Jakarta Pusat">DKI Jakarta Pusat</option>
+  <option value="DKI Jakarta Utara">DKI Jakarta Utara</option>
+  <option value="DKI Jakarta Selatan">DKI Jakarta Selatan</option>
+  <option value="DKI Jakarta Barat">DKI Jakarta Barat</option>
+  <option value="DKI Jakarta Timur">DKI Jakarta Timur</option>
+</select>
+
+    <select name="jemaat" id="jemaat" required>
+  <option value="">Pilih Jemaat</option>
+</select>
+
+    
     <label>Nama</label>
 <input name="nama" placeholder="Masukkan nama lengkap" required>
-    <label>Jemaat GPIB</label>
-<input name="jemaat" placeholder="Masukkan nama Jemaat GPIB" required>
-    <label>Jabatan dalam PKB Jemaat</label>
-    <input name="jabatan" placeholder="Jabatan" required>
+
+<select name="jabatan">
+  <option value="">Pilih Jabatan</option>
+  <option>Ketua</option>
+  <option>Wakil Ketua</option>
+  <option>Sekretaris</option>
+  <option>Wakil Sekretaris</option>
+  <option>Bendahara</option>
+  <option>Wakil Bendahara</option>
+</select>
+    
+   
     <input name="peran" placeholder="Peran MUPEL">
     <input name="wa" placeholder="No WhatsApp" required>
 
     <button type="submit">Lanjut request join Grup WA "KSB/KP3 PKB GPIB Sinodal (Aktif)"</button>
+    
   </form>
 
   <div class="note">
@@ -126,7 +150,37 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
 
   window.location.href = "https://chat.whatsapp.com/BDLzpoNa2s38kn2ZEbAm16";
 });
+
+
+  
+</script>
+<script>
+const dataJemaat = {
+  "DKI Jakarta Pusat": ["Bethesda", "Paulus", "Immanuel"],
+  "DKI Jakarta Utara": ["Sion", "Ebenhaezer"],
+  "DKI Jakarta Selatan": ["Filadelfia", "Maranatha"]
+};
 </script>
 
+  <script>
+document.getElementById("mupel").addEventListener("change", function() {
+  const jemaatSelect = document.getElementById("jemaat");
+  const selected = this.value;
+
+  jemaatSelect.innerHTML = '<option value="">Pilih Jemaat</option>';
+
+  if (dataJemaat[selected]) {
+    dataJemaat[selected].forEach(j => {
+      const option = document.createElement("option");
+      option.value = j;
+      option.textContent = j;
+      jemaatSelect.appendChild(option);
+    });
+  }
+});
+</script>
+
+  
+  
 </body>
 </html>
