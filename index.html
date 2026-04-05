@@ -575,20 +575,6 @@ const dataJemaat = {
 };
 
 
-document.getElementById("mupel").addEventListener("change", function() {
-  const jemaatSelect = document.getElementById("jemaat");
-  const selected = this.value;
-
-  jemaatSelect.innerHTML = '<option value="">Pilih Jemaat</option>';
-
-  if (dataJemaat[selected]) {
-    dataJemaat[selected].forEach(j => {
-      const option = document.createElement("option");
-      option.value = j;
-      option.textContent = j;
-      jemaatSelect.appendChild(option);
-    });
-  }
 });
 </script>
   
