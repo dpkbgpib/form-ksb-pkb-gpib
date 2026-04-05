@@ -109,7 +109,11 @@
 </div>
 
 <div id="page4" class="page">
-  <h2>Data Diri</h2>
+  
+  <h2>Data Diri Pengurus</h2>
+
+<p class="subtitle" id="infoJemaat"></p>
+<p class="subtitle" id="infoMupel2"></p>
 
   <div class="field">
     <label>Nama Lengkap</label>
@@ -239,6 +243,22 @@ document.getElementById("jemaat").addEventListener("change", function() {
   alert("Next: Review Page");
 }
 
+
+  if (pageNumber === 4) {
+  const mupel = localStorage.getItem("mupel");
+  const jemaat = localStorage.getItem("jemaat");
+
+  if (mupel) {
+    let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
+    document.getElementById("infoMupel2").textContent =
+      "MUPEL " + namaMupel;
+  }
+
+  if (jemaat) {
+    document.getElementById("infoJemaat").textContent =
+      "PKB GPIB " + jemaat;
+  }
+}
   
 </script>
 
