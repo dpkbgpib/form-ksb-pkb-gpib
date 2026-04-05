@@ -97,17 +97,15 @@
   </div>
 
   <!-- 🔵 PAGE 3 -->
-  <div id="page3" class="page">
-  
-<h2>Pilih Jemaat</h2>
-<p id="infoMupel" class="subtitle"></p>
-    <select id="jemaat">
-      <option value="">Pilih Jemaat</option>
-    </select>
+<div id="page3" class="page">
+  <h2>Pilih Jemaat</h2>
+  <p id="infoMupel" class="subtitle"></p>
 
-    <button class="back" onclick="showPage(2)">Back</button>
-  </div>
+  <select id="jemaat">
+    <option value="">Pilih Jemaat</option>
+  </select>
 
+  <button class="back" onclick="showPage(2)">Back</button>
 </div>
 
 <script>
@@ -122,7 +120,19 @@ const dataJemaat = {
 function showPage(pageNumber) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById("page" + pageNumber).classList.add("active");
+
+  // 🔥 KHUSUS SAAT MASUK PAGE 3
+  if (pageNumber === 3) {
+    const mupel = localStorage.getItem("mupel");
+
+    if (mupel) {
+      let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
+      document.getElementById("infoMupel").textContent =
+        "Pada " + namaMupel;
+    }
+  }
 }
+
 
 // 🔥 AUTO NEXT MUPEL
 document.getElementById("mupel").addEventListener("change", function() {
