@@ -146,6 +146,9 @@
 </div>
 
 <script>
+  document.addEventListener("DOMContentLoaded", function(){
+
+  // ⬇️ PINDAHKAN SEMUA SCRIPT ANDA KE SINI
 
 // ✅ DATA (SUDAH BENAR)
 const dataJemaat = {
@@ -576,7 +579,7 @@ const dataJemaat = {
  
 };
 
-   const mupelSelect = document.getElementById("mupel");
+const mupelSelect = document.getElementById("mupel");
 
 Object.keys(dataJemaat).forEach(m => {
   const opt = document.createElement("option");
@@ -585,7 +588,6 @@ Object.keys(dataJemaat).forEach(m => {
   mupelSelect.appendChild(opt);
 });
   
-
 
   
 // NAVIGATION
@@ -769,7 +771,7 @@ function joinWA(){
 }
 
  
-  
+});  
 </script>
 
 </body>
