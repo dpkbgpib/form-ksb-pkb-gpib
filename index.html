@@ -115,24 +115,15 @@
   <button onclick="submitData()">Next</button>
 </div>
 
-<div class="field">
-  <label>Apakah Anda Pengurus MUPEL?</label>
-  <select id="isKP3" onchange="toggleKP3()">
-    <option value="Tidak">Tidak</option>
-    <option value="Ya">Ya (KP3/KORWIL)</option>
-  </select>
-</div>
-
-<div class="field" id="kp3Field" style="display:none;">
-  <label>Jabatan di MUPEL</label>
-  <select id="jabatanMupel">
-    <option value="">Pilih Jabatan</option>
-    <option>KP3/KORWIL</option>
+<select id="peran">
+  <option value="">Tidak Ada</option>
+  <option>KP3/KORWIL</option>
     <option>Wakil KP3</option>
     <option>Sekretaris</option>
+   <option>Wakil Sekretaris</option>
     <option>Bendahara</option>
-  </select>
-</div>
+   <option>Wakil Bendahara</option>
+</select>
   
   
 <!-- PAGE 5 -->
@@ -617,13 +608,19 @@ function showPage(n) {
   }
 
   if(n===5){
-    document.getElementById("reviewBox").innerHTML = `
+  document.getElementById("reviewBox").innerHTML = `
+    <b>
       ${localStorage.getItem("nama")} <br>
-      ${localStorage.getItem("wa")} <br>
-      ${localStorage.getItem("namaJemaat")} - ${localStorage.getItem("kota")}
-    `;
-  }
+      ${localStorage.getItem("wa")} <br><br>
+
+      ${localStorage.getItem("namaJemaat")} - ${localStorage.getItem("kota")} <br>
+      ${localStorage.getItem("mupel")} <br><br>
+
+      Peran MUPEL: ${localStorage.getItem("peran") || "Tidak Ada"}
+    </b>
+  `;
 }
+
 
 // MUPEL CHANGE
 document.getElementById("mupel").addEventListener("change", function(){
@@ -673,8 +670,8 @@ function submitData(){
 
   localStorage.setItem("nama", nama);
   localStorage.setItem("wa", wa);
-  localStorage.setItem("isKP3", document.getElementById("isKP3").value);
-localStorage.setItem("jabatanMupel", document.getElementById("jabatanMupel").value);
+localStorage.setItem("peran", document.getElementById("peran").value);
+
 
   showPage(5);
 }
@@ -693,9 +690,8 @@ function submitFinal(){
   const formData = new FormData();
   ["mupel","nama","wa","namaJemaat","kota"].forEach(k=>{
     formData.append(k, localStorage.getItem(k) || "");
+    formData.append("peran", localStorage.getItem("peran") || "");
   });
-
-Peran MUPEL: ${isKP3 === "Ya" ? jabatanMupel : "Tidak Ada"}
   
   const isKP3 = localStorage.getItem("isKP3") || "Tidak";
 const jabatanMupel = localStorage.getItem("jabatanMupel") || "-";
