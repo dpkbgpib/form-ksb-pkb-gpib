@@ -179,7 +179,7 @@ const dataJemaat = {
 {nama:"GETSEMANI",kota:"Jimbaran"},
 {nama:"JEMBRANA",kota:"Negara"}
 ],
-"02 - KALTIM I": [
+"03 - KALTIM I": [
 {nama:"BUKIT SION",kota:"Balikpapan"},
 {nama:"IMMANUEL",kota:"Balikpapan"},
 {nama:"MARANATHA",kota:"Balikpapan"},
@@ -740,18 +740,19 @@ const formData = new FormData();
 });
 // ✅ TAMBAHKAN DI LUAR LOOP
 
-
-  fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y-ROerqw-SspRc8370H_RtVb4vCy-xavaQnzw/exec", {
-    method:"POST",
-    body:formData
-    
-  })
-  .then(()=>{
-    showPage(6);
-    localStorage.clear();
-  })
-  .catch(()=> alert("Gagal kirim"));
-}
+fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y-ROerqw-SspRc8370H_RtVb4vCy-xavaQnzw/exec", {
+  method: "POST",
+  body: formData
+})
+.then(res => res.text()) // ✅ PENTING
+.then(() => {
+  showPage(6);
+  localStorage.clear();
+})
+.catch(err => {
+  console.error(err);
+  alert("Gagal kirim");
+});
 
   function toggleKP3() {
   const val = document.getElementById("isKP3").value;
