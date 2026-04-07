@@ -665,8 +665,7 @@ document.getElementById("mupel").addEventListener("change", function(){
   showPage(4);
 }
 
-    
-    window.showPage = showPage;
+    window.pilihJemaat = pilihJemaat;
     
 // JEMAAT CHANGE
 
@@ -688,9 +687,7 @@ function submitData(){
 
 
 // WAJIB supaya bisa dipanggil HTML
-window.pilihJemaat = pilihJemaat;
 
-  
   // ✅ VALIDASI NAMA
   if(!nama){
     alert("Nama wajib");
@@ -718,7 +715,7 @@ if(!jabatan){
   showPage(5);
 }
 
-    window.showPage = showPage;
+
   // SUBMIT
 let isSubmitting = false;
 
