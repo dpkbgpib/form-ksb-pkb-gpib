@@ -632,7 +632,7 @@ document.getElementById("mupel").addEventListener("change", function(){
   if(!val) return;
 
   localStorage.setItem("mupel", val);
-
+  
   let jemaatSelect = document.getElementById("jemaat");
   jemaatSelect.innerHTML = '<option value="">Pilih Jemaat</option>';
 
@@ -722,7 +722,8 @@ function submitFinal(){
 
   // 🔥 BACKUP kalau kosong
   if(!namaJemaat){
-    const jemaatVal = document.getElementById("jemaat")?.value;
+    var jemaatEl = document.getElementById("jemaat");
+var jemaatVal = jemaatEl ? jemaatEl.value : "";
 
     if(jemaatVal){
       let parts = jemaatVal.split("||");
