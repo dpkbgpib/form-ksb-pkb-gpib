@@ -753,28 +753,20 @@ var jemaatVal = jemaatEl ? jemaatEl.value : "";
     kota
   });
 
-  fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y-ROerqw-SspRc8370H_RtVb4vCy-xavaQnzw/exec", {
-    method: "POST",
-    body: formData,
-    mode: "no-cors"
-  })
-  .then(() => {
-    showPage(6);
-    localStorage.clear();
-  })
-  .catch(() => {
-    showPage(6);
-    localStorage.clear();
-  });
-}
-  
-
+fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y-ROerqw-SspRc8370H_RtVb4vCy-xavaQnzw/exec", {
+  method: "POST",
+  body: formData,
+  mode: "no-cors"
+})
+.then(() => {
+  showPage(6);
+  localStorage.clear();
+})
 .catch(() => {
-  // tetap lanjut saja
   showPage(6);
   localStorage.clear();
 });
-
+  
 }
 
 
