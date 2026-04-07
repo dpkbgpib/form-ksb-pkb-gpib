@@ -705,10 +705,9 @@ if(!jabatan){
   showPage(5);
 }
 
-
-
-// SUBMIT
+  // SUBMIT
 let isSubmitting = false;
+
 function submitFinal(){
   if(isSubmitting) return;
   isSubmitting = true;
@@ -717,45 +716,57 @@ function submitFinal(){
   btn.disabled = true;
   btn.textContent = "Mengirim...";
 
-const namaJemaat = localStorage.getItem("namaJemaat") || "";
-const kota = localStorage.getItem("kota") || "";
+  // ✅ ambil dari localStorage dulu
+  let namaJemaat = localStorage.getItem("namaJemaat");
+  let kota = localStorage.getItem("kota");
 
-  
-  
+  // 🔥 BACKUP kalau kosong
+  if(!namaJemaat){
+    const jemaatVal = document.getElementById("jemaat")?.value;
+
+    if(jemaatVal){
+      let parts = jemaatVal.split("||");
+      namaJemaat = parts[0];
+      kota = parts[1];
+
+      // simpan ulang
+      localStorage.setItem("namaJemaat", namaJemaat);
+      localStorage.setItem("kota", kota);
+    }
+  }
+
   const formData = new FormData();
 
   formData.append("mupel", localStorage.getItem("mupel") || "");
-formData.append("nama", localStorage.getItem("nama") || "");
-formData.append("wa", localStorage.getItem("wa") || "");
-formData.append("jabatan", localStorage.getItem("jabatan") || "");
-formData.append("peran", localStorage.getItem("peran") || "");
+  formData.append("nama", localStorage.getItem("nama") || "");
+  formData.append("wa", localStorage.getItem("wa") || "");
+  formData.append("jabatan", localStorage.getItem("jabatan") || "");
+  formData.append("peran", localStorage.getItem("peran") || "");
 
-// 🔥 AMBIL LANGSUNG DARI DROPDOWN
-formData.append("namaJemaat", namaJemaat);
-formData.append("kota", kota);
+  // ✅ kirim hasil final
+  formData.append("namaJemaat", namaJemaat || "");
+  formData.append("kota", kota || "");
 
-
-
-  
-
-  console.log("DATA KIRIM:", {
-    mupel: localStorage.getItem("mupel"),
-    namaJemaat: localStorage.getItem("namaJemaat"),
-    kota: localStorage.getItem("kota")
+  console.log("DATA KIRIM FINAL:", {
+    namaJemaat,
+    kota
   });
 
- console.log("namaJemaat:", localStorage.getItem("namaJemaat"));
-  
-  // ✅ FETCH HARUS DI SINI
   fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y-ROerqw-SspRc8370H_RtVb4vCy-xavaQnzw/exec", {
     method: "POST",
-    body: formData
+    body: formData,
+    mode: "no-cors"
   })
-  .then(res => res.text())
   .then(() => {
     showPage(6);
     localStorage.clear();
   })
+  .catch(() => {
+    showPage(6);
+    localStorage.clear();
+  });
+}
+  
 
 .catch(() => {
   // tetap lanjut saja
