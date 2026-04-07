@@ -609,11 +609,12 @@ function showPage(n) {
     document.getElementById("infoMupel2").textContent = mupel;
   }
 
-  if(n===5){
+if(n===5){
   document.getElementById("reviewBox").innerHTML = `
     <b>
       ${localStorage.getItem("nama")} <br>
-      ${localStorage.getItem("wa")} <br><br>
+      ${localStorage.getItem("wa")} <br>
+      ${localStorage.getItem("jabatan") || "-"} <br><br>
 
       ${localStorage.getItem("namaJemaat")} - ${localStorage.getItem("kota")} <br>
       ${localStorage.getItem("mupel")} <br><br>
@@ -623,6 +624,7 @@ function showPage(n) {
   `;
 }
 }
+  
 
 // MUPEL CHANGE
 document.getElementById("mupel").addEventListener("change", function(){
@@ -666,14 +668,15 @@ document.getElementById("jemaat").addEventListener("change", function(){
 function submitData(){
   let nama = document.getElementById("nama").value.trim();
   let wa = document.getElementById("wa").value.trim();
+  let jabatan = document.getElementById("jabatan").value;
 
   if(!nama){ alert("Nama wajib"); return; }
   if(!wa.match(/^[0-9]{10,15}$/)){ alert("WA tidak valid"); return; }
 
   localStorage.setItem("nama", nama);
   localStorage.setItem("wa", wa);
-localStorage.setItem("peran", document.getElementById("peran").value);
-
+  localStorage.setItem("jabatan", jabatan); // ✅ TAMBAH INI
+  localStorage.setItem("peran", document.getElementById("peran").value);
 
   showPage(5);
 }
@@ -691,9 +694,18 @@ function submitFinal(){
 
 const formData = new FormData();
 
-["mupel","nama","wa","namaJemaat","kota"].forEach(k=>{
+[
+  "mupel",
+  "nama",
+  "wa",
+  "namaJemaat",
+  "kota",
+  "jabatan",   // ✅ TAMBAH
+  "peran"      // ✅ TAMBAH
+].forEach(k=>{
   formData.append(k, localStorage.getItem(k) || "");
 });
+
 
 // ✅ TAMBAHKAN DI LUAR LOOP
 formData.append("peran", localStorage.getItem("peran") || "");
@@ -725,7 +737,7 @@ function joinWA(){
 }
 
 
-
+console.log("Jabatan:", jabatan);
   
 </script>
 
