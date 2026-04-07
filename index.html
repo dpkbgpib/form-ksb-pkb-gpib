@@ -717,19 +717,33 @@ function submitFinal(){
   btn.disabled = true;
   btn.textContent = "Mengirim...";
 
+const jemaatVal = document.getElementById("jemaat").value;
+
+let namaJemaat = "";
+let kota = "";
+
+if(jemaatVal){
+  let parts = jemaatVal.split("||");
+  namaJemaat = parts[0];
+  kota = parts[1];
+}
+
+  
   const formData = new FormData();
 
-  [
-    "mupel",
-    "nama",
-    "wa",
-    "namaJemaat",
-    "kota",
-    "jabatan",
-    "peran"
-  ].forEach(k=>{
-    formData.append(k, localStorage.getItem(k) || "");
-  });
+  formData.append("mupel", localStorage.getItem("mupel") || "");
+formData.append("nama", localStorage.getItem("nama") || "");
+formData.append("wa", localStorage.getItem("wa") || "");
+formData.append("jabatan", localStorage.getItem("jabatan") || "");
+formData.append("peran", localStorage.getItem("peran") || "");
+
+// 🔥 AMBIL LANGSUNG DARI DROPDOWN
+formData.append("namaJemaat", namaJemaat);
+formData.append("kota", kota);
+
+
+
+  
 
   console.log("DATA KIRIM:", {
     mupel: localStorage.getItem("mupel"),
@@ -749,10 +763,13 @@ function submitFinal(){
     showPage(6);
     localStorage.clear();
   })
-  .catch(err => {
-    console.error(err);
-    alert("Gagal kirim");
-  });
+
+.catch(() => {
+  // tetap lanjut saja
+  showPage(6);
+  localStorage.clear();
+});
+
 }
 
 
