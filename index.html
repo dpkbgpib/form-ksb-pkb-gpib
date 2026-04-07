@@ -717,17 +717,10 @@ function submitFinal(){
   btn.disabled = true;
   btn.textContent = "Mengirim...";
 
-const jemaatVal = document.getElementById("jemaat").value;
+const namaJemaat = localStorage.getItem("namaJemaat") || "";
+const kota = localStorage.getItem("kota") || "";
 
-let namaJemaat = "";
-let kota = "";
-
-if(jemaatVal){
-  let parts = jemaatVal.split("||");
-  namaJemaat = parts[0];
-  kota = parts[1];
-}
-
+  
   
   const formData = new FormData();
 
